@@ -33,12 +33,12 @@ do
 	searchFolder=${array[1]}
 	outputFolder=${array[2]}
 	outputDir=${CustomDir}/${outputFolder}
-	if [ ! -d "${outputDir}" ]
-	then
-		mkdir -p "${outputDir}"
-	fi
 	# 搜索路径
 	searchPath=${WorkingAreaDir}/${APKPackageNameStr}/${searchFolder}
+	if [ ! -d "${searchPath}" ]
+	then
+		continue
+	fi
 	# 遍历路径内的指定文件
 	for i in $(find "${searchPath}" -depth -name "${fileName}"); do
 		cutSearchPath=${i#*${searchPath}/}
@@ -48,10 +48,10 @@ do
 		if [ -z "$cutFileName" ]; then
 			# 拼接路径
 			finalOutputDir=${outputDir}/${cutFileName}
-			if [ ! -d "${finalOutputDir}" ]
-			then
-				mkdir -p "${finalOutputDir}"
-			fi
+		fi
+		if [ ! -d "${finalOutputDir}" ]
+		then
+			mkdir -p "${finalOutputDir}"
 		fi
 		cp -f $i "${finalOutputDir}"
 	done
