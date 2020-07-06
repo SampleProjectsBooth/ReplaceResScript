@@ -1,4 +1,5 @@
 tool/JKSConfig.bat
 tool/JKSConfig.sh
 private_key.pepk
-*.apk
+custom
+workingArea
