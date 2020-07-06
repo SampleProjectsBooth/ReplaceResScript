@@ -25,6 +25,7 @@ if [ -d "${CustomDir}" ]
 then
 	rm -rf "${CustomDir}"
 fi
+mkdir -p "${CustomDir}"
 
 for projectFile in ${projectFileList[*]}
 do
@@ -41,11 +42,13 @@ do
 	fi
 	# 遍历路径内的指定文件
 	for i in $(find "${searchPath}" -depth -name "${fileName}"); do
+		# 截取左边的搜索路径
 		cutSearchPath=${i#*${searchPath}/}
-		cutFileName=${cutSearchPath#*${fileName}}
+		# 截取右边的文件名称
+		cutFileName=${cutSearchPath%${fileName}*}
 		finalOutputDir=${outputDir}
 		# 判断cutFileName是否为空
-		if [ -z "$cutFileName" ]; then
+		if [[ "$cutFileName" != "" ]]; then
 			# 拼接路径
 			finalOutputDir=${outputDir}/${cutFileName}
 		fi
