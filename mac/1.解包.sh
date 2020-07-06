@@ -5,7 +5,7 @@ source ../tool/JKSConfig.sh
 source ../tool/projectConfig.sh
 source ./config.sh
 
-if [ -d "${WorkingAreaDir}/${APKPackageNameStr}" ]
+if [[ "${WorkingAreaDir}" != "" ]] && [[ -d "${WorkingAreaDir}/${APKPackageNameStr}" ]]
 then
 	rm -rf "${WorkingAreaDir}/${APKPackageNameStr}"
 fi
@@ -21,7 +21,7 @@ java -jar "$ApktoolJar" d "${WorkingAreaDir}/${APKPackageName}" -o "${WorkingAre
 
 #解包后，定位资源文件夹res，遍历“输入数组”，找到对应的多个文件（同一个名称可能存在多个文件），拷贝到custom目录下“输出数组”对应序列的文件夹里面。
 
-if [ -d "${CustomDir}" ]
+if [[ "${CustomDir}" != "" ]] && [[ -d "${CustomDir}" ]]
 then
 	rm -rf "${CustomDir}"
 fi

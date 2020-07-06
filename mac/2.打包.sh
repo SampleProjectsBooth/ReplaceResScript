@@ -11,7 +11,7 @@ then
 	exit
 fi
 
-if [ -d "${WorkingAreaDir}/${NewAPKPackageName}" ]
+if [[ "${WorkingAreaDir}" != "" ]] && [[ -d "${WorkingAreaDir}/${NewAPKPackageName}" ]]
 then
 	rm -rf "${WorkingAreaDir}/${NewAPKPackageName}"
 fi
@@ -57,7 +57,7 @@ then
 	mkdir -p "${SignedDir}"
 fi
 
-if [ -d "${SignedDir}/${SignedApkPackageName}" ]
+if [[ "${SignedDir}" != "" ]] && [[ -d "${SignedDir}/${SignedApkPackageName}" ]]
 then
 	rm -rf "${SignedDir}/${SignedApkPackageName}"
 fi
